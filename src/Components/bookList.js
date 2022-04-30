@@ -1,3 +1,4 @@
+import AddBook from './AddBook';
 import Book from './Book';
 
 const BookList = () => {
@@ -15,6 +16,7 @@ const BookList = () => {
           </div>
         </div>
       ))}
+      <AddBook />
     </>
   );
 };
