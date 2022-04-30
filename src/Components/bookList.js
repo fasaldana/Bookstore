@@ -13,7 +13,6 @@ const BookList = () => {
           <div className="book-desc">
             <Book title={book.title} author={book.author} />
           </div>
-          <button type="button">Remove</button>
         </div>
       ))}
     </>
