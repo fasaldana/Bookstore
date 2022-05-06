@@ -1,19 +1,25 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { removeBook } from '../redux/books/books';
 import AddBook from './AddBook';
 import Book from './Book';
 
 const BookList = () => {
-  const booksArr = [
-    { id: 1, title: 'The Hunger Games', author: 'Suzanne Collins' },
-    { id: 2, title: 'The Hunger Games2', author: 'Suzanne Collins2' },
-  ];
+  const book = useSelector((state) => state.book.value);
+  const dispatch = useDispatch();
+  const clickHandle = (id) => {
+    dispatch(removeBook({ id }));
+  };
   return (
     <>
-      {booksArr.map((book) => (
-        <div key={book.id} className="book-list">
+      {book.map((books) => (
+        <div key={books.id} className="book-list">
           <p>Category</p>
           <div className="book-desc">
-            <Book title={book.title} author={book.author} />
+            <Book title={books.title} author={books.author} />
           </div>
+          <button type="button" onClick={() => clickHandle(books.id)}>
+            Remove
+          </button>
         </div>
       ))}
       <AddBook />
