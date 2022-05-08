@@ -48,8 +48,12 @@ export const bookSlice = createSlice({
         state.value = state.value.concat(action.payload);
       })
       .addCase(addNewBook.fulfilled, (state, action) => {
-        console.log(action.payload);
-        state.value.push(action.payload);
+        state.value.push({
+          id: action.meta.requestId,
+          title: action.meta.arg.title,
+          author: action.meta.arg.author,
+          category: 'not yet',
+        });
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
         const index = state.value.findIndex(({ id }) => id === action.payload.id);
