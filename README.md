@@ -10,6 +10,7 @@
 ## Built With
 
 - React
+- Redux toolkit
 
 ## Live Demo
 
