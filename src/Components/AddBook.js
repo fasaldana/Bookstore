@@ -8,18 +8,22 @@ const AddBook = () => {
 
   const dispatch = useDispatch();
 
+  const canSave = [title, author].every(Boolean);
+
   const clickHandle = () => {
-    try {
-      dispatch(
-        addNewBook({
-          title,
-          author,
-        }),
-      );
-      setTitle('');
-      setAuthor('');
-    } catch (error) {
-      console.error('Failed to add book', error);
+    if (canSave) {
+      try {
+        dispatch(
+          addNewBook({
+            title,
+            author,
+          }),
+        );
+        setTitle('');
+        setAuthor('');
+      } catch (error) {
+        console.error('Failed to add book', error);
+      }
     }
   };
 
