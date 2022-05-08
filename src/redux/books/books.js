@@ -20,16 +20,12 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
 });
 
 export const addNewBook = createAsyncThunk('books/addNewBook', async ({ title, author }) => {
-  const response = await axios
-    .post(`${booksUrl}/apps/orZh6Zhb7kYfqHuBMsh2/books/`, {
-      item_id: uuid(),
-      title,
-      author,
-      category: 'not yet',
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  const response = await axios.post(`${booksUrl}/apps/orZh6Zhb7kYfqHuBMsh2/books/`, {
+    item_id: uuid(),
+    title,
+    author,
+    category: 'not yet',
+  });
   return response.data;
 });
 
@@ -56,7 +52,6 @@ export const bookSlice = createSlice({
         state.value.push(action.payload);
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
-        console.log(state, action.payload);
         const index = state.value.findIndex(({ id }) => id === action.payload.id);
         state.value.splice(index, 1);
       });

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './redux/configureStore';
 import App from './App';
 import { fetchBooks } from './redux/books/books';
+import './App.css';
 
 store.dispatch(fetchBooks());
 
