@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
 import { addNewBook } from '../redux/books/books';
 
 const AddBook = () => {
@@ -13,10 +12,8 @@ const AddBook = () => {
     try {
       dispatch(
         addNewBook({
-          item_id: uuid(),
           title,
           author,
-          category: 'not yet',
         }),
       );
       setTitle('');

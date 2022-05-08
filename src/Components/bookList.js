@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { removeBook } from '../redux/books/books';
+import { deleteBook } from '../redux/books/books';
 import AddBook from './AddBook';
 import Book from './Book';
 
@@ -8,7 +8,7 @@ const BookList = () => {
   console.log(book);
   const dispatch = useDispatch();
   const clickHandle = (id) => {
-    dispatch(removeBook({ id }));
+    dispatch(deleteBook({ id }));
   };
 
   return (
