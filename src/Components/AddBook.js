@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import { addBook } from '../redux/books/books';
+import { v4 as uuid } from 'uuid';
+import { addNewBook } from '../redux/books/books';
 
 const AddBook = () => {
   const [title, setTitle] = useState('');
@@ -10,7 +10,20 @@ const AddBook = () => {
   const dispatch = useDispatch();
 
   const clickHandle = () => {
-    dispatch(addBook({ id: uuidv4(), title, author }));
+    try {
+      dispatch(
+        addNewBook({
+          item_id: uuid(),
+          title,
+          author,
+          category: 'not yet',
+        }),
+      );
+      setTitle('');
+      setAuthor('');
+    } catch (error) {
+      console.error('Failed to add book', error);
+    }
   };
 
   return (
