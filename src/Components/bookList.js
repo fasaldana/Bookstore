@@ -5,7 +5,6 @@ import Book from './Book';
 
 const BookList = () => {
   const book = useSelector((state) => state.book.value);
-  console.log(book);
   const dispatch = useDispatch();
   const clickHandle = (id) => {
     dispatch(deleteBook({ id }));
@@ -19,7 +18,7 @@ const BookList = () => {
           <div className="book-desc">
             <Book title={books.title} author={books.author} />
           </div>
-          <button type="button" onClick={() => clickHandle(books.id)}>
+          <button className="remove-btn" type="button" onClick={() => clickHandle(books.id)}>
             Remove
           </button>
         </div>
