@@ -5,6 +5,7 @@ import { addNewBook } from '../redux/books/books';
 const AddBook = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [category, setCategory] = useState('');
 
   const dispatch = useDispatch();
 
@@ -17,10 +18,12 @@ const AddBook = () => {
           addNewBook({
             title,
             author,
+            category,
           }),
         );
         setTitle('');
         setAuthor('');
+        setCategory('');
       } catch (error) {
         console.error('Failed to add book', error);
       }
@@ -42,6 +45,12 @@ const AddBook = () => {
           placeholder="Author"
           value={author}
           onInput={(e) => setAuthor(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Category"
+          value={category}
+          onInput={(e) => setCategory(e.target.value)}
         />
         <button type="button" onClick={clickHandle}>
           ADD BOOK

@@ -19,12 +19,12 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   }
 });
 
-export const addNewBook = createAsyncThunk('books/addNewBook', async ({ title, author }) => {
+export const addNewBook = createAsyncThunk('books/addNewBook', async ({ title, author, category }) => {
   const response = await axios.post(`${booksUrl}/apps/orZh6Zhb7kYfqHuBMsh2/books/`, {
     item_id: uuid(),
     title,
     author,
-    category: 'not yet',
+    category,
   });
   return response.data;
 });
@@ -40,6 +40,7 @@ export const bookSlice = createSlice({
   name: 'book',
   initialState: {
     value: [],
+    progress: 0,
   },
   reducers: {},
   extraReducers(builder) {
@@ -52,7 +53,7 @@ export const bookSlice = createSlice({
           id: action.meta.requestId,
           title: action.meta.arg.title,
           author: action.meta.arg.author,
-          category: 'not yet',
+          category: action.meta.arg.category,
         });
       })
       .addCase(deleteBook.fulfilled, (state, action) => {
